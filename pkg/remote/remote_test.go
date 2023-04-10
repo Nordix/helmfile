@@ -414,7 +414,7 @@ func TestRemote_CommonHttpUrl(t *testing.T) {
 		},
 		{
 			name:  "common http url",
-			input: "https://raw.githubusercontent.com/helmfile/testdata/add-remote-value-test-data/remote-values/value.yaml",
+			input: "https://raw.githubusercontent.com/helmfile/testdata/main/remote-values/value.yaml",
 		},
 	}
 

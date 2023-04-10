@@ -223,7 +223,17 @@ func (r *Remote) Fetch(goGetterSrc string, cacheDirOpt ...string) (string, error
 		if r.fs.FileExistsAt(originDirOrFilePath) {
 			return originDirOrFilePath, nil
 		}
-		return "", fmt.Errorf("when dest is a directory, subfile must be specified")
+
+		subFiles, err := r.fs.ReadDir(originDirOrFilePath)
+		if err != nil {
+			return "", err
+		}
+
+		if len(subFiles) == 1 && !subFiles[0].IsDir() {
+			return filepath.Join(originDirOrFilePath, subFiles[0].Name()), nil
+		}
+
+		return "", fmt.Errorf("when dest is a directory with one more files or without any files, subfile must be specified")
 	}
 	if !r.fs.FileExistsAt(filepath.Join(originDirOrFilePath, file)) {
 		return "", fmt.Errorf("subfile %s does not exist in %s", file, originDirOrFilePath)
