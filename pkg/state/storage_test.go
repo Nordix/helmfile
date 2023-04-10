@@ -42,7 +42,7 @@ func TestStorage_resolveFile(t *testing.T) {
 			wantErr:     false,
 		},
 		{
-			name: "non existing file in repo produce non-skip",
+			name: "non existing file in repo produce non skip",
 			args: args{
 				path:               "git::https://github.com/helmfile/helmfile.git@examples/values/non-existing-file.yaml?ref=v0.145.2",
 				title:              "values",
