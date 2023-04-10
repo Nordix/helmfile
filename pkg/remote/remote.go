@@ -110,9 +110,6 @@ func Parse(goGetterSrc string) (*Source, error) {
 	switch len(pathComponents) {
 	case 1:
 		sourceDir = pathComponents[0]
-		if !strings.HasSuffix(u.Path, "/") {
-			sourceFile = filepath.Base(u.Path)
-		}
 	case 2:
 		sourceDir = pathComponents[0]
 		sourceFile = pathComponents[1]
